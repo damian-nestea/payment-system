@@ -4,17 +4,18 @@ import { Card, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { IconHome } from "../../../../node_modules/@tabler/icons-react/dist/esm/tabler-icons-react";
+import Link from "next/link";
 
-export default function LoginPage(){
-  return(
+export default function LoginPage() {
+  return (
     <main className={`h-screen py-8 px-4 flex flex-col`}>
-      <Titulo titulo="Acesse a Plataforma!"/>
-      <form className={`py-24`}>
+      <Titulo titulo="Acesse a Plataforma!" />
+      <form className={`pt-24`}>
         <Card className={`p-3`}>
           <CardTitle className={`text-center mb-4`}>Login</CardTitle>
           <div className={`inputWrapper`}>
             <Label htmlFor={"email"}>Email</Label>
-            <Input 
+            <Input
               id={"email"}
               name={"email"}
               type={"email"}
@@ -23,7 +24,7 @@ export default function LoginPage(){
           </div>
           <div className={`inputWrapper`}>
             <Label htmlFor={"password"}>Senha</Label>
-            <Input 
+            <Input
               id={"password"}
               name={"password"}
               type={"password"}
@@ -31,12 +32,16 @@ export default function LoginPage(){
             />
           </div>
           <div className={`mt-4 text-center`}>
-            <Button>Login</Button>
+            <Button>Enviar</Button>
           </div>
         </Card>
       </form>
 
-      <IconHome />
+      <Link className={`mx-auto mt-8`} href={"/portal"}>
+        <Button>
+          <IconHome />
+        </Button>
+      </Link>
     </main>
-  )
+  );
 }
