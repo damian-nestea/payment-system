@@ -1,0 +1,8 @@
+.link{
+  @apply text-blue-600 text-[1.1rem] duration-500;
+  @apply hover:text-blue-950;
+}
+
+.inputWrapper{
+  @apply mt-2;
+}
