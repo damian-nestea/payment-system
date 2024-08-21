@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
+/* import { Provider } from "react-redux";
+import store from "./redux/store"; */
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -16,9 +19,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      {/* <Provider store={store}> */}
       <body className={inter.className} suppressHydrationWarning={true}>
         {children}
       </body>
+      {/* </Provider> */}
     </html>
   );
 }
