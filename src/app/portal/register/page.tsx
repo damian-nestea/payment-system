@@ -1,3 +1,5 @@
+"use client";
+
 import Titulo from "@/components/Titulo/Titulo";
 import { Button } from "@/components/ui/button";
 import { Card, CardTitle } from "@/components/ui/card";
@@ -6,7 +8,33 @@ import { Label } from "@/components/ui/label";
 import { IconHome } from "../../../../node_modules/@tabler/icons-react/dist/esm/tabler-icons-react";
 import Link from "next/link";
 
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { register } from "@/redux/user/reducer";
+
 export default function RegisterPage() {
+  const [name, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const dispatch = useDispatch();
+
+  const handleRegister = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    if (name && email && password) {
+      const newUser = {
+        name,
+        email,
+        password,
+      };
+      setName("");
+      setEmail("");
+      setPassword("");
+      dispatch(register(newUser));
+    } else {
+      alert("Preencha todos os campos");
+    }
+  };
+
   return (
     <main className={`h-screen py-8 px-4 flex flex-col`}>
       <Titulo titulo="Cadastre-se!" />
@@ -20,6 +48,8 @@ export default function RegisterPage() {
               name={"name"}
               type={"text"}
               placeholder={"Digite seu nome..."}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
           <div className={`inputWrapper`}>
@@ -29,6 +59,8 @@ export default function RegisterPage() {
               name={"email"}
               type={"email"}
               placeholder={"Digite seu email..."}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className={`inputWrapper`}>
@@ -38,10 +70,12 @@ export default function RegisterPage() {
               name={"password"}
               type={"password"}
               placeholder={"Digite sua senha..."}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <div className={`mt-4 text-center`}>
-            <Button>Enviar</Button>
+            <Button onClick={handleRegister}>Enviar</Button>
           </div>
         </Card>
       </form>
