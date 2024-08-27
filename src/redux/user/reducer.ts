@@ -3,7 +3,6 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 const initialState: any = {
   list: [],
   userOnline: {
-    id: 0,
     name: "",
     email: "",
   },
@@ -15,8 +14,13 @@ const userSlice = createSlice({
   reducers: {
     register: (state, action: PayloadAction<any>) => {
       const { name, email, password } = action.payload;
+      const emailExists = state.list.find((user: any) => user.email === email);
+      if (emailExists) {
+        alert("Email já cadastrado");
+        return;
+      }
       state.list.push({ name, email, password });
-      console.log(state.list);
+      alert("Usuário cadastrado com sucesso");
     },
     login: (state, action: PayloadAction<any>) => {
       const { email, password } = action.payload;
@@ -27,7 +31,6 @@ const userSlice = createSlice({
         state.userOnline = user;
         state.isLogged = true;
       }
-      console.log(state.userOnline);
     },
   },
 });
