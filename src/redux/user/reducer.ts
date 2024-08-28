@@ -30,7 +30,11 @@ const userSlice = createSlice({
       if (user) {
         state.userOnline = user;
         state.isLogged = true;
+      } else {
+        alert("Usuário não encontrado.");
+        return;
       }
+      alert("Usuário logado com sucesso");
     },
   },
 });
