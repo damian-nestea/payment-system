@@ -11,12 +11,14 @@ import { useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "@/redux/user/reducer";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const dispatch = useDispatch();
   const userList = useSelector((state: any) => state.user.list);
+  const router = useRouter();
 
   const handleLogin = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
@@ -32,6 +34,7 @@ export default function LoginPage() {
       setEmail("");
       setPassword("");
       dispatch(login(user));
+      router.push("/portal");
     } else {
       alert("Usuário não encontrado.");
     }
